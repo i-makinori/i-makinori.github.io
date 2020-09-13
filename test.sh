@@ -1,25 +1,6 @@
 #!/bin/bash
 
-list=$(ls -R ./docs/)
+filename=docs/
 
-
-directory=""
-pathname=""
-
-for row in ${list}; do
-    if [ ${row} == "" ]; then
-        :
-    elif [ -d ${row%:} ]; then
-        directory=${row%":"}
-        directory=${directory%"/"}
-        echo ${directory}
-    else
-        for name in ${row}; do
-            pathname=${directory}/${row}
-            if [ -f ${pathname} ]; then
-                echo "  " ${pathname}
-            fi
-        done
-    fi
-
-done
+datetime=$(git log --pretty=format:%cd -n 1 --date=iso ${filename})
+echo $datetime

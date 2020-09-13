@@ -53,8 +53,13 @@ for posts_path in ${list_spheres[@]}; do
             fi
         done < ${posts_path}
 
+
+
         export title=${title}
         export body=$(pandoc --mathjax --from markdown --to html ${tmp_file})
+        
+        datetime=$(git log --pretty=format:%cd -n 1 --date=iso ${posts_path})
+        export datetime=${datetime}
 
         # template
         cat ${template_file} | envsubst > ${html_path}
