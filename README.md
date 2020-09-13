@@ -6,7 +6,7 @@
 ### compile
 
 ```sh
-$ ./test.sh
+$ ./template.sh
 ```
 
 to compile and move files from spheres directory to docs directory.
