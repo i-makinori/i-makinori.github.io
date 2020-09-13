@@ -1,9 +1,48 @@
-<html>
-  <head> ${title} </head>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title> ${title} -  </title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/identity/css/normalize.css" />
+    <link rel="stylesheet" href="/identity/css/style.css" />
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <!-- <script type="text/javascript" src="/statics/javascript/utils.js"></script> -->
+  </head>
   <body>
-    <h1> ${title} </h1>
-    <hr />
-      
-    ${body}
+    <div class="screen-container">
+      <div class="grid-container-wide-article">  
+        <div class="header">
+          ${title} - n次元情報空間因果律基底研究室幻影保管庫 - 
+        </div>
+        <hr class="invisible" />
+        <div class="article-main">
+          <div class="article">
+            <p>
+              最終更新:YYYY/MM/DD hh:mm:ss (<a href="/">log</a>)
+            </p>
+            <p>${body}</p>
+          </div>
+        </div>
+        <hr class="invisible" />
+        <div class="side-menu">
+          <ul>
+            <li><a href="/">入り口</a></li>
+            <li><a href="/sphere-map">公開中の情報の一覧</a></li>
+            <li><a href="/">更新の履歴</a></li>
+          </ul>
+        </div>
+        <hr class="invisible" />
+        <div class="navi-menu"></div>
+        <hr class="invisible" />
+        <div class="footer">池上 蒔典 &lt;maau3p@gmail.com&gt;</div>
+        <hr class="invisible" />
+      </div>
+    </div>
   </body>
 </html>

@@ -15,6 +15,11 @@ function message(){
     echo -e $@
 }
 
+### utilities
+
+BLUE=`tput setaf 4`
+NOCOLOR=`tput sgr0`
+
 #### to index directory
 
 
@@ -28,20 +33,19 @@ template_file=${script_dir}/scripts/template.html
 for posts_path in ${list_spheres[@]}; do
 
     docs_file_path=${showns_dir}${posts_path##${posts_dir}}
-    message "\t" ${posts_path#${script_dir}}  " -> " ${docs_file_path}
-
+    message -n ${BLUE} ${posts_path#${script_dir}}
+    message ${NOCOLOR} " -> " ${docs_file_path#${script_dir}}
+    #    message ${docs_file_path%/}
     
-    mkdir -p ${docs_file_path%/}
+    mkdir -p ${docs_file_path%/*}
     if [ -d ${posts_path} ]; then
         :
     elif [ -f ${posts_path} ] && [ ${posts_path##*.} == md ]; then
         html_path=${docs_file_path%.*}.html
-        echo ${html_path}
         export title="hogehgoe"
         export body=$(pandoc --mathjax --from markdown --to html ${posts_path})
         cat ${template_file} | envsubst > ${html_path}
     else
-        mkdir -p ${docs_file_path%/}
         cp ${posts_path} ${docs_file_path}
     fi
 
@@ -50,7 +54,7 @@ done
 
 ### 
 
+
 #### webfsd
 
-#webfsd -p 3001 -r ${showns_dir}
-
+webfsd -p 3000 -r ${showns_dir}

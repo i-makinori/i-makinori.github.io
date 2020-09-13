@@ -93,60 +93,6 @@ hr.whole-line {
 
 
 
-/*.virtual-table{*/
-
-.documents-table {
-  border: 1px solid indigo;
-  margin: 0; 
-  padding: 0;
-}
-
-.documents-table-row-form {
-  grid-template-areas:
-    'pathname href mimetypes  title dates caption author   apply edit'
-    'pathname raw  attributes title olds  caption opend-to apply edit';
-  grid-template-columns: 13em 5em 13em 13em 13em 21em 13em 5em auto;
-}
-
-.documents-table-row {
-  grid-template-areas:
-    'pathname href mimetypes  title dates caption author  '
-    'pathname raw  attributes title olds  caption opend-to';
-  grid-template-columns: 13em 5em 13em 13em 13em 13em auto;
-
-}
-
-.documents-table-row-form, .documents-table-row {
-  grid-template-rows: auto auto;
-  display: grid;
-  /*border: 1px solid indigo;*/
-}
-
-.documents-table-row-form > span, .documents-table-row > span {
-  margin: 0px;
-  border: 1px solid indigo;
-  padding: 2px 5px;
-  overflow: auto;
-  text-align: center;
-  word-wrap: break-word;
-}
-
-.pathname{grid-area: pathname;}
-.href{grid-area: href;}
-.mimetypes{grid-area: mimetypes;}
-.title{grid-area: title;}
-.dates{grid-area: dates;}
-.caption{grid-area: caption;}
-.author{grid-area: author;}
-.apply{grid-area: apply;}
-.edit{grid-area: edit;}
-
-.raw{grid-area: raw;}
-.attributes{grid-area: attributes;}
-.olds{grid-area: olds;}
-.opend-to{grid-area: opend-to;}
-
-
 /* grid frame */
 
 body, html{
@@ -215,8 +161,8 @@ body, html{
 .side-menu, .article-main, .navi-menu, .space-menu{
   margin: 12px 2px;
   padding: 12px;
-  border-right: 1px solid midnightblue;
-  border-left: 1px solid midnightblue;
+  /* border-right: 1px solid midnightblue;*/
+  /* border-left: 1px solid midnightblue;*/
 }
 .side-menu {grid-area: side;}
 .space-menu {grid-area: space;}
