@@ -30,8 +30,8 @@ tmp_file=${script_dir}/scripts/temporary.txt
 for posts_path in ${list_spheres[@]}; do
     docs_file_path=${showns_dir}${posts_path##${spheres_dir}}
 
-    message -n ${BLUE} ${posts_path#${script_dir}}
-    message ${NOCOLOR} " -> " ${docs_file_path#${script_dir}}
+    # message -n ${BLUE} ${posts_path#${script_dir}}
+    # message ${NOCOLOR} " -> " ${docs_file_path#${script_dir}}
     
     mkdir -p ${docs_file_path%/*}
     if [ -d ${posts_path} ]; then
@@ -60,6 +60,7 @@ for posts_path in ${list_spheres[@]}; do
         cat ${template_file} | envsubst > ${html_path}
         rm ${tmp_file}
     else
+        # echo ${posts_path} ${docs_file_path}
         cp ${posts_path} ${docs_file_path}
     fi
 
@@ -69,38 +70,43 @@ done
 
 ### list of spheres
 
-list_showns=($(find ${showns_dir} -print))
 
-rm ${tmp_file}
+directory=""
+pathname=""
 
-echo "<table><th>" >> ${tmp_file}
-echo "<tr><th>path</th></tr>" >> ${tmp_file}
-for shown_path in ${list_showns[@]}; do
-    request_path=${shown_path#${script_dir}/docs}
+touch ${tmp_file}
 
-    echo "${request_path}"
-    echo "<tr>" >> ${tmp_file}
-    if [ -d ${shown_path} ]; then
-        echo "<td> ${request_path} </td>" >> ${tmp_file}
-    elif [ -f ${shown_path} ]; then
-        drafts_file_path=${spheres_di}${shown_path##${showns_dir}}
-        #echo "-> ${drafts_file_path}"
-        echo "<td><a href=\"${request_path}\">${request_path}</a></td>" >> ${tmp_file}
-    else :
+function directory_aux(){ # $1: dir, $2: file
+    dir_uri=${1#${script_dir}/docs}${2}
+
+    if [ -d ${1}${2} ]; then
+        echo "<li>${dir_uri}</li>" >> ${tmp_file}
+        echo "<ul>" >> ${tmp_file}
+        for file in $(ls -p ${1} | grep -v /); do
+            directory_aux ${1} ${file}
+        done
+        for dir in $(ls -F ${1} | grep \/$) ; do
+            directory_aux ${1}${dir}
+        done
+        echo "</ul>" >> ${tmp_file}
+    elif [ -f ${1}${2} ]; then
+        a_tag="<a href=\"${dir_uri}\">${2}</a>"
+        echo "<li>${a_tag}</li>" >> ${tmp_file}
     fi
-    echo "</tr>" >> ${tmp_file}
-done
-echo "</table>" >> ${tmp_file}
+}
 
-sphere_map_path=${showns_dir}sphere-map.html
+echo "<ul>" >> ${tmp_file}
+directory_aux ${showns_dir}
+echo "</ul>" >> ${tmp_file}
 
 export title="spheres whole site"
 export body=$(cat ${tmp_file})
+
+
+sphere_map_path=${showns_dir}sphere-map.html
+
 
 cat ${template_file} | envsubst > ${sphere_map_path}
 
 rm ${tmp_file}
 
-#### webfsd
-
-webfsd -p 3000 -r ${showns_dir}

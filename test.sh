@@ -1,20 +1,25 @@
 #!/bin/bash
 
-path=spheres/inosphere/thought.md
-#path=spheres/inosphere/markdown-sample.md
+list=$(ls -R ./docs/)
 
 
+directory=""
+pathname=""
 
-while read line
-do
-    if [ "${line::2}" == "# " ]; then
-        ans=${line:2}
-    elif [ "${line}" == "" ]; then
+for row in ${list}; do
+    if [ ${row} == "" ]; then
         :
+    elif [ -d ${row%:} ]; then
+        directory=${row%":"}
+        directory=${directory%"/"}
+        echo ${directory}
     else
-        break
+        for name in ${row}; do
+            pathname=${directory}/${row}
+            if [ -f ${pathname} ]; then
+                echo "  " ${pathname}
+            fi
+        done
     fi
-done < ${path}
 
-
-return ${ans}
+done
