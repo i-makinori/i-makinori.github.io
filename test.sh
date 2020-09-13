@@ -5,11 +5,11 @@
 
 script_dir=$(cd $(dirname $0); pwd)
 
-
 showns_dir=${script_dir}/docs/
-posts_dir=${script_dir}/spheres/
-draft_server="localhost:3000/"
-shown_server="https://github.com/i-makinori/corruption-log/."
+spheres_dir=${script_dir}/spheres/
+
+deployed_uri="https://i-makinori.github.io/"
+git_uri="https://github.com/i-makinori/i-makinori.github.io/"
 
 function message(){
     echo -e $@
@@ -20,22 +20,18 @@ function message(){
 BLUE=`tput setaf 4`
 NOCOLOR=`tput sgr0`
 
-#### to index directory
 
+### compile sphere ... apply template and make file
 
-### documents ... apply template and make file
-
-list_spheres=($(find ${posts_dir} -print))
-#list_inospheres=($(find ${posts_dir} -maxdepth 1 -not -type d) )
+list_spheres=($(find ${spheres_dir} -print))
 template_file=${script_dir}/scripts/template.html
 
 
 for posts_path in ${list_spheres[@]}; do
+    docs_file_path=${showns_dir}${posts_path##${spheres_dir}}
 
-    docs_file_path=${showns_dir}${posts_path##${posts_dir}}
     message -n ${BLUE} ${posts_path#${script_dir}}
     message ${NOCOLOR} " -> " ${docs_file_path#${script_dir}}
-    #    message ${docs_file_path%/}
     
     mkdir -p ${docs_file_path%/*}
     if [ -d ${posts_path} ]; then
@@ -48,11 +44,12 @@ for posts_path in ${list_spheres[@]}; do
     else
         cp ${posts_path} ${docs_file_path}
     fi
-
-    #message ""    
 done
 
-### 
+
+### list of spheres
+
+
 
 
 #### webfsd
