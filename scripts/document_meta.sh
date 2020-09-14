@@ -36,7 +36,7 @@ while read line; do
     fi
     # body
     if [ "${mode}" == "body" ] && [ "$BODY_P" == "TRUE" ]; then
-        echo ${line} >> ${TMP_FILE}
+        echo "${line}" >> ${TMP_FILE}
     fi
 done < ${PATHNAME}
 
