@@ -3,4 +3,5 @@
 
  ここには、小生も学習したことの記録や、纒め、雑記や虚言などを、設置してゆきます。
 
+ この領域は、github pagesによる像です。始集合は、[こちら](https://github.com/i-makinori/i-makinori.github.io)に定義されます。
 
