@@ -11,6 +11,7 @@ tmp_file=${script_dir}/scripts/temporary.txt
 list_spheres=($(find ${spheres_dir} -print))
 template_file=${script_dir}/scripts/template.html
 
+rm ${showns_dir}* -rf
 for posts_path in ${list_spheres[@]}; do
     docs_file_path=${showns_dir}${posts_path##${spheres_dir}}
 
@@ -41,6 +42,90 @@ for posts_path in ${list_spheres[@]}; do
     fi
 
 done
+
+
+
+### change logs as blog 
+
+
+# sort by datetime
+
+
+tmp_dates=${script_dir}/scripts/temporary_dates.txt
+
+echo > ${tmp_dates}
+
+while read FILE; do 
+    modified=$(git log --pretty=format:%cd -n 1 --date=iso "$FILE")
+    if [ -z "${modified}" ]; then
+        modified=$(date -r ${FILE} "+%Y-%m-%d %H:%M:%S %z")
+    fi
+    echo ${modified} : ${FILE}
+done < <( git ls-files ${spheres_dir}) | sort -r  > ${tmp_dates}
+
+# 
+
+
+tmp_file2=${script_dir}/scripts/temporary2.txt
+
+
+echo "<table class=\"sphere_list\">" > ${tmp_file2}
+# echo "<tr><th rowspan=\"2\">title</th><th>path</th></tr>" >> ${tmp_file2}
+# echo "<tr><th>datetime</th></tr>" >> ${tmp_file2}
+# echo "<tr><th colspan=\"2\">caption</th></tr>" >> ${tmp_file2}
+while read path; do
+    title="";
+    caption="";
+    datetime=${path% : *}
+
+    posts_path=${path#* : }
+    posts_path=${spheres_dir}${posts_path#*/}
+
+    docs_file_path=${showns_dir}${posts_path##${spheres_dir}}
+
+    # echo ${posts_path}
+    # echo  ${docs_file_path}
+
+
+    if [ -d ${posts_path} ]; then
+        :
+    elif [ -f ${posts_path} ] && [ ${posts_path##*.} == md ]; then
+
+        docs_file_path=${docs_file_path%.*}.html
+        title=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -t -b ${tmp_file})
+        caption=$(head ${tmp_file} -c 377)
+        rm ${tmp_file}
+
+        href=${docs_file_path#${script_dir}/docs}
+
+
+        echo "<tr>" >> ${tmp_file2}
+        echo "<td class=\"title\" rowspan=\"2\"><a href=\"${href}\">${title}</a></td>" >> ${tmp_file2}
+        echo "<td class=\"pathname\">${href}</td>" >> ${tmp_file2}
+        echo "</tr>" >> ${tmp_file2}
+        echo "<tr><td class=\"datetime\">${datetime}</td></tr>" >> ${tmp_file2}
+        echo "<tr><td class=\"caption\" colspan=\"2\">${caption}</td></tr>" >> ${tmp_file2}
+
+    else
+        :
+    fi
+
+done < ${tmp_dates}
+echo "</table>" >> ${tmp_file2}
+
+
+
+rm ${tmp_dates}
+
+export title="堕落の記録"
+export body=$(cat ${tmp_file2})
+
+
+weblog_file_path=${showns_dir}corruptions.html
+
+cat ${template_file} | envsubst > ${weblog_file_path}
+
+rm ${tmp_file2}
 
 
 
@@ -87,87 +172,4 @@ sphere_map_path=${showns_dir}sphere-map.html
 cat ${template_file} | envsubst > ${sphere_map_path}
 
 rm ${tmp_file}
-
-
-### change logs as blog 
-
-
-# sort by datetime
-
-
-tmp_dates=${script_dir}/scripts/temporary_dates.txt
-
-echo > ${tmp_dates}
-
-while read FILE; do 
-    modified=$(git log --pretty=format:%cd -n 1 --date=iso "$FILE")
-    if [ -z "${modified}" ]; then
-        modified=$(date -r ${FILE} "+%Y-%m-%d %H:%M:%S %z")
-    fi
-    echo ${modified} : ${FILE}
-done < <( git ls-files ${spheres_dir}) | sort -r  > ${tmp_dates}
-
-# 
-
-
-tmp_file2=${script_dir}/scripts/temporary2.txt
-echo "<table>" > ${tmp_file2}
-echo "<tr><th>path</th><th rowspan=\"2\">title ∩ caption</th></tr>" >> ${tmp_file2}
-echo "<tr><th>datetime</th></tr>" >> ${tmp_file2}
-#for posts_path in ${documents_list[@]}; do # ${list_spheres[@]}; do
-while read path; do
-
-
-    title="";
-    caption="";
-    datetime=${path% : *}
-
-
-    posts_path=${path#* : }
-    posts_path=${spheres_dir}${posts_path#*/}
-
-    docs_file_path=${showns_dir}${posts_path##${spheres_dir}}
-
-    # echo ${posts_path}
-    # echo  ${docs_file_path}
-
-
-    if [ -d ${posts_path} ]; then
-        :
-    elif [ -f ${posts_path} ] && [ ${posts_path##*.} == md ]; then
-
-        docs_file_path=${docs_file_path%.*}.html
-        title=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -t -b ${tmp_file})
-        caption=$(head ${tmp_file} -c 233)
-        rm ${tmp_file}
-
-        href=${docs_file_path#${script_dir}/docs}
-        #echo ${posts_path} "->" ${href}
-        #echo ${datetime} ${title} ${caption}
-
-        echo "<tr>" >> ${tmp_file2}
-        echo "<td><a href=\"${href}\">${href}</a></td>" >> ${tmp_file2}
-        echo "<td rowspan=\"2\"><b>${title}</b> - ${caption}</td></td>" >> ${tmp_file2}
-        echo "</tr>" >> ${tmp_file2}
-        echo "<tr>" >> ${tmp_file2}
-        echo "<td>${datetime}</td>" >> ${tmp_file2}
-        echo "</tr>" >> ${tmp_file2}
-    else
-        :
-    fi
-
-done < ${tmp_dates}
-echo "</table>" >> ${tmp_file2}
-
-rm ${tmp_dates}
-
-export title="what's new"
-export body=$(cat ${tmp_file2})
-
-
-weblog_file_path=${showns_dir}weblog.html
-
-cat ${template_file} | envsubst > ${weblog_file_path}
-
-rm ${tmp_file2}
 
