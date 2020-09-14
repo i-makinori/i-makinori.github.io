@@ -23,13 +23,11 @@ for posts_path in ${list_spheres[@]}; do
         :
     elif [ -f ${posts_path} ] && [ ${posts_path##*.} == md ]; then
         html_path=${docs_file_path%.*}.html
-        touch ${tmp_file}
 
+        title=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -t -b ${tmp_file})
+            # title: echoed return, body: in_tmp_file
 
-        title=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -t)
         export title=${title}
-
-        body=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -b ${tmp_file})
         export body=$(pandoc --mathjax --from markdown --to html ${tmp_file})
         
         datetime=$(git log --pretty=format:%cd -n 1 --date=iso ${posts_path})
@@ -55,7 +53,9 @@ pathname=""
 
 touch ${tmp_file}
 
+
 function directory_aux(){ # $1: dir, $2: file
+    # dir_uri=${showns_dir}${2}
     dir_uri=${1#${script_dir}/docs}${2}
 
     if [ -d ${1}${2} ]; then

@@ -23,7 +23,6 @@ fi
 #
 
 
-# echo "path: ${PATHNAME}, title: ${TITLE_P}, body: ${BODY_P} <- ${TMP_FILE}"
 
 # parse
 
@@ -46,10 +45,9 @@ done < ${PATHNAME}
 
 if [ "$TITLE_P" = "TRUE" ]; then
     echo ${title}
-    
 fi
 
-if [ "$FLG_B" = "TRUE" ]; then
+if [ "$BODY_P" = "TRUE" ]; then
     :
 fi
 
