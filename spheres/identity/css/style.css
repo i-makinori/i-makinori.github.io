@@ -1,12 +1,4 @@
 
-/* constants */
-
-:root {
-  --both-end-color: #fbfaf5;
-  --both-tag-color: #0f2350;
-
-}
-
 
 
 /* tags */
@@ -68,7 +60,7 @@ blockquote {
 hr.invisible {
   clear: both;
   visibility: hidden;
-  height: 0px;
+  height: 0px; width: 0px;
   border: 0;
   margin: 0; padding: 0;
 }
@@ -142,7 +134,7 @@ body, html{
   padding: 8px 20px;
 }
 
-.grid-container, .grid-container-wide-article{
+.grid-container-wide-article{
   height: 100%;
   display: grid;
 }
@@ -154,8 +146,8 @@ body, html{
       'head head head'
       'space main navi'
       'foot foot foot';
-    grid-template-columns: 1fr 21fr 1fr;
-    grid-template-rows: 5em 1fr auto 3em;
+      grid-template-columns: 1fr 21fr 1fr;
+      grid-template-rows: 5em auto 3em;
   }
 }
 
@@ -167,16 +159,17 @@ body, html{
 }
 
 .footer, .header{
-  background-color: var(--both-end-color);
-  color: var(--both-tag-color);
-  display: flex;
+
   border-top: 1px solid midnightblue;
   border-bottom: 1px solid midnightblue;
+  display: flex;  
   justify-content: center;
   align-items: center;
+  
 }
-.footer{grid-area: foot; position:bottom;}
 .header{grid-area: head;}
+.footer{grid-area: foot; position: bottom;}
+
 
 
 .article-main, .navi-menu, .space-menu{

@@ -143,7 +143,7 @@ function directory_aux(){ # $1: dir, $2: file
     dir_uri=${1#${script_dir}/docs}${2}
 
     if [ -d ${1}${2} ]; then
-        echo "<li>${dir_uri}</li>" >> ${tmp_file}
+        echo "<li>${dir_uri}" >> ${tmp_file}
         echo "<ul>" >> ${tmp_file}
         for file in $(ls -p ${1} | grep -v /); do
             directory_aux ${1} ${file}
@@ -151,7 +151,7 @@ function directory_aux(){ # $1: dir, $2: file
         for dir in $(ls -F ${1} | grep \/$) ; do
             directory_aux ${1}${dir}
         done
-        echo "</ul>" >> ${tmp_file}
+        echo "</ul></li>" >> ${tmp_file}
     elif [ -f ${1}${2} ]; then
         a_tag="<a href=\"${dir_uri}\">${2}</a>"
         echo "<li>${a_tag}</li>" >> ${tmp_file}
