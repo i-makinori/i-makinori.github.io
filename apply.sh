@@ -1,24 +1,9 @@
 #!/bin/bash
 
 
-### configs
-
 script_dir=$(cd $(dirname $0); pwd)
-
-showns_dir=${script_dir}/docs/
-spheres_dir=${script_dir}/spheres/
-
-deployed_uri="https://i-makinori.github.io/"
-git_uri="https://github.com/i-makinori/i-makinori.github.io/"
-
-function message(){
-    echo -e $@
-}
-
-### utilities
-
-BLUE=`tput setaf 4`
-NOCOLOR=`tput sgr0`
+# read utilities and configs
+source ${script_dir}/scripts/utils.sh 
 
 
 ### compile sphere ... apply template and make file
@@ -39,23 +24,12 @@ for posts_path in ${list_spheres[@]}; do
     elif [ -f ${posts_path} ] && [ ${posts_path##*.} == md ]; then
         html_path=${docs_file_path%.*}.html
         touch ${tmp_file}
-        mode="title"
-        while read line; do
-            # title
-            if [ "${mode}" == "title" ]; then
-                if   [ "${line::2}" == "# " ]; then title=${line:2};
-                elif [ "${line}"    == ""   ]; then :
-                else mode="body"; fi 
-            fi
-            # body
-            if [ "${mode}" == "body" ]; then
-                echo ${line} >> ${tmp_file}
-            fi
-        done < ${posts_path}
 
 
-
+        title=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -t)
         export title=${title}
+
+        body=$(${script_dir}/scripts/document_meta.sh -p ${posts_path} -b ${tmp_file})
         export body=$(pandoc --mathjax --from markdown --to html ${tmp_file})
         
         datetime=$(git log --pretty=format:%cd -n 1 --date=iso ${posts_path})
