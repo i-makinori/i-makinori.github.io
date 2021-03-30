@@ -5,20 +5,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title> pandocによるmarkdownからhtmlへの変換の試験 - 情報空間因果律基底研究室 - </title>
+    <title> pandocによるmarkdownからhtmlへの変換の試験 - n次元情報空間因果律基底研究室 - </title>
     <link rel="icon" href="/favicon.ico" />
+
     <link rel="stylesheet" href="/identity/css/normalize.css" />
     <link rel="stylesheet" href="/identity/css/style.css" />
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
+
+    <script id="MathJax-script"
+            async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
     <!-- <script type="text/javascript" src="/statics/javascript/utils.js"></script> -->
   </head>
   <body>
     <div class="screen-container">
-      <div class="grid-container-wide-article">  
+      <div class="grid-container-wide-article">
         <div class="header">
-          <p> 
+          <p>
             - n次元情報空間因果律基底研究室 - &nbsp;
             [ <a href="/">入り口</a>
             | <a href="/corruptions.html">堕落の記録</a>
@@ -78,12 +80,6 @@
 <li>4です</li>
 <li>5です. 入れ子にもできます</li>
 </ol>
-<h3 id="ソースコード">ソースコード</h3>
-<pre><code>ソースコードの節の中身は、そのまま表示されます。
-
-改行もされます。
-</code></pre>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>name<span class="op">=</span><span class="st">&quot;language&#39;s code are highlighted&quot;</span></span></code></pre></div>
 <h3 id="水平線">水平線</h3>
 <p>水平線 <code>&lt;br /&gt;</code></p>
 <hr />
@@ -92,11 +88,34 @@
 <p><a href="https://www.google.com">google</a> とか、 <a href="https://www.google.com">yahoo</a> とか。</p>
 <p>画像です。</p>
 <figure>
-<img src="https://www.pakutaso.com/shared/img/thumb/mitte820G_TP_V.jpg" alt="altenative text. himejuon-image. but 404" /><figcaption aria-hidden="true">altenative text. himejuon-image. but 404</figcaption>
+<img src="https://www.photock.jp/photo/middle/photo0000-0705.jpg" alt="山" /><figcaption aria-hidden="true">山</figcaption>
 </figure>
 <h3 id="エスケープ">エスケープ</h3>
 <p>地の文で表現に用いた文字が、markdown言語の構文の文字として解釈されることで、望まれない文書の構造の崩壊が発生しうるが、 これを防ぐ為に、地の文を記述する際にエスケープ文字を衝突しうる文字に付与する。</p>
 <p> ` * _ { } [ ] ( ) # + - . !</p>
+<h3 id="ソースコード">ソースコード</h3>
+<pre><code>すぱげってぃ
+ぱげすってぃ
+すげぱってぃ
+っげぱすてぃ
+てげぱすっぃ</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">functor ::</span> <span class="kw">forall</span> m a b c<span class="op">.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>( <span class="dt">Functor</span> m</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>, <span class="dt">Arbitrary</span> b, <span class="dt">Arbitrary</span> c</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>, <span class="dt">CoArbitrary</span> a, <span class="dt">CoArbitrary</span> b</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>, <span class="dt">Show</span> (m a), <span class="dt">Arbitrary</span> (m a), <span class="dt">EqProp</span> (m a), <span class="dt">EqProp</span> (m c)) <span class="ot">=&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>m (a,b,c) <span class="ot">-&gt;</span> <span class="dt">TestBatch</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>functor <span class="ot">=</span> <span class="fu">const</span> ( <span class="st">&quot;functor&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>, [ (<span class="st">&quot;identity&quot;</span>, property identityP)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>, (<span class="st">&quot;compose&quot;</span> , property composeP) ]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ot">identityP ::</span> <span class="dt">Property</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ot">composeP  ::</span> (b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Property</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>identityP <span class="ot">=</span> <span class="fu">fmap</span> <span class="fu">id</span> <span class="op">=-=</span> (<span class="fu">id</span><span class="ot"> ::</span> m a <span class="ot">-&gt;</span> m a)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>composeP g f <span class="ot">=</span> <span class="fu">fmap</span> g <span class="op">.</span> <span class="fu">fmap</span> f <span class="op">=-=</span> (<span class="fu">fmap</span> (g<span class="op">.</span>f)<span class="ot"> ::</span> m a <span class="ot">-&gt;</span> m c)</span></code></pre></div>
+<h3 id="数式">数式</h3>
           </div>
           <hr class="invisible" />
         </div>
@@ -104,7 +123,7 @@
         <div class="space-menu">
           <hr class="invisible" />
         </div>
-        
+
         <div class="navi-menu">
           <hr class="invisible" />
         </div>

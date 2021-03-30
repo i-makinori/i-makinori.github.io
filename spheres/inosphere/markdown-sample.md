@@ -65,19 +65,6 @@
 8. 5です. 入れ子にもできます
 
 
-### ソースコード
-
-```
-ソースコードの節の中身は、そのまま表示されます。
-
-改行もされます。
-
-```
-
-```python
-name="language's code are highlighted"
-```
-
 
 ### 水平線
 
@@ -94,7 +81,7 @@ name="language's code are highlighted"
 
 画像です。
 
-![altenative text. himejuon-image. but 404](https://www.pakutaso.com/shared/img/thumb/mitte820G_TP_V.jpg)
+![山](https://www.photock.jp/photo/middle/photo0000-0705.jpg)
 
 ### エスケープ
 
@@ -107,5 +94,35 @@ name="language's code are highlighted"
 
 
 
+### ソースコード
+
+```
+すぱげってぃ
+ぱげすってぃ
+すげぱってぃ
+っげぱすてぃ
+てげぱすっぃ
+```
+
+```haskell
+functor :: forall m a b c.
+           ( Functor m
+           , Arbitrary b, Arbitrary c
+           , CoArbitrary a, CoArbitrary b
+           , Show (m a), Arbitrary (m a), EqProp (m a), EqProp (m c)) =>
+           m (a,b,c) -> TestBatch
+functor = const ( "functor"
+                , [ ("identity", property identityP)
+                , ("compose" , property composeP) ]
+                )
+ where
+   identityP :: Property
+   composeP  :: (b -> c) -> (a -> b) -> Property
+
+   identityP = fmap id =-= (id :: m a -> m a)
+   composeP g f = fmap g . fmap f =-= (fmap (g.f) :: m a -> m c)
+```
+
+### 数式
 
 

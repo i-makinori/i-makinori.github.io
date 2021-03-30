@@ -141,8 +141,10 @@ touch ${tmp_file}
 function directory_aux(){ # $1: dir, $2: file
     # dir_uri=${showns_dir}${2}
     dir_uri=${1#${script_dir}/docs}${2}
-
-    if [ -d ${1}${2} ]; then
+    
+    if [ "${dir_uri}" = "/identity/" ]; then
+        echo "<li><i> unders of /identiry/ directory are not shown... </i></li>" >> ${tmp_file}
+    elif [ -d ${1}${2} ]; then
         echo "<li>${dir_uri}" >> ${tmp_file}
         echo "<ul>" >> ${tmp_file}
         for file in $(ls -p ${1} | grep -v /); do
