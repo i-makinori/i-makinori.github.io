@@ -1,9 +1,10 @@
 {{ define "title" }}
-{{- .Site.Title -}}
 {{ end }}
 {{ define "main" }}
 {{ "<!-- _default/index.html start -->" | safeHTML }}
 <h1>{{ .Site.Title }}</h1>
+
+
 {{ .Content }}
 <ul>
   {{ range .Site.RegularPages -}}

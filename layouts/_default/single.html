@@ -1,13 +1,17 @@
 {{ define "title" }}
-{{- .Title -}}
+{{- .Title -}} 
 {{ end }}
 {{ define "main" }}
 {{ "<!-- _default/single.html start -->" | safeHTML }}
-<ul>
-  {{ range .Params.tags -}}
-  <li><a href="{{ print "/tags/" . | relURL }}/">{{ . }}</a></li>
-  {{ end -}}
-</ul>
+
+<center>
+<h1>{{ .Title }}</h1>
+相対位置: <a href="{{ .RelPermalink }}">{{ .RelPermalink }}</a> <br/>
+公開日時: {{ .PublishDate }}
+<br /> <br />
+</center>
+
+
 {{ .Content }}
 {{ "<!-- _default/single.html end -->" | safeHTML }}
 {{ end }}

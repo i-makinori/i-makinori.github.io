@@ -6,10 +6,13 @@
 ### compile
 
 ```sh
-$ ./template.sh
+$ hugo serve
 ```
 
-to compile and move files from spheres directory to docs directory.
+to editting mode, server runs.
 
-docs directory is what to read.
+```sh
+$ hugo
+```
 
+to apply templates for markdown into doc directory.
