@@ -2,6 +2,12 @@ baseURL = "http://i-makinori.github.io/"
 languageCode = "ja-JP"
 title = "n次元情報空間因果律基底研究室"
 contentDir = "spheres"
-disableKinds = ["RSS", "sitemap", "categories", "tags"]
+disableKinds = ["RSS", "categories", "tags"]
 publishDir = "docs"
 
+# highlight
+[markup]
+  [highlight]
+    codeFences = true
+    noClasses = true
+    style = "monokai"

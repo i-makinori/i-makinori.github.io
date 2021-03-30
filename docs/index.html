@@ -11,9 +11,14 @@
     
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/syntax.css" />
     
-    <script id="MathJax-script"
-            async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+                 svg: {fontCache: 'global'}};
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 
   </head>
   <body>
@@ -36,6 +41,8 @@
 <h1>n次元情報空間因果律基底研究室</h1>
 
 <ul>
+  <li><a href="/article/markdown-sample/">Markdown Sample</a></li>
+  <li><a href="/hello-test/">Hello Test</a></li>
   <li><a href="/article/hello-hugo/">Hello Hugo</a></li>
   </ul>
 <!-- _default/index.html end -->

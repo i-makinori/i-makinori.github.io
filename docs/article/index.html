@@ -10,9 +10,14 @@
     
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/syntax.css" />
     
-    <script id="MathJax-script"
-            async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+                 svg: {fontCache: 'global'}};
+    </script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
 
   </head>
   <body>
@@ -39,6 +44,28 @@
 
 <table class="sphere_list">
   <tbody>
+    
+    <tr>
+      <td class="title" rowspan="3">
+        <a href="/article/markdown-sample/">Markdown Sample</a>
+      </td>
+      <td class="pathname"> 相対位置: /article/markdown-sample/ </td>
+    </tr>
+    <tr> <td class="datetime"> 公開日時: 2021-03-30 22:15:15 &#43;0900 JST </td> </tr>
+    <tr> <td class="datetime"> 最終更新: 2021-03-30 22:15:15 &#43;0900 JST </td> </tr>
+    <tr>
+      <td class="caption" colspan="2">Hugoによるmarkdownからhtmlへの変換の試験 はじめに 段落は空白の行ごとに区切られる。
+斜体, 太字, そして 行内でのコード。
+見出し h1 h2 h3 h4 h5 h6 複数行の引用 複数行に渡って背景たるdivを適用する。
+ blockquote 引用2
+ リスト 配列は、かの如く:
+ ひとつめ ふたつめ みっつめ  又は、
+ a b  b1 on b b1 on b   f g  更に、
+ あ い う  数値付きの配列
+ 1です 2です 3です 4です 5です. 入れ子にもできます  水平線 水平線 &lt;br /&gt;
+  リンク google とか、 yahoo とか。
+画像です。</td>
+    </tr>
     
     <tr>
       <td class="title" rowspan="3">
