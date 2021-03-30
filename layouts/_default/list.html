@@ -1,0 +1,30 @@
+{{ define "title" }}
+{{- .Title -}}
+{{ end }}
+{{ define "main" }}
+{{ "<!-- _default/list.html start -->" | safeHTML }}
+
+<h1>記事一覧</h1>
+
+<hr />
+
+<table class="sphere_list">
+  <tbody>
+    {{ range .Pages -}}
+    <!-- <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li> -->
+    <tr>
+      <td class="title" rowspan="3">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </td>
+      <td class="pathname"> 相対位置: {{ .RelPermalink }} </td>
+    </tr>
+    <tr> <td class="datetime"> 公開日時: {{ .PublishDate }} </td> </tr>
+    <tr> <td class="datetime"> 最終更新: {{ .Lastmod }} </td> </tr>
+    <tr>
+      <td class="caption" colspan="2">{{ .Summary }}</td>
+    </tr>
+    {{ end -}}
+  </tbody>
+</table>
+{{ "<!-- _default/list.html end -->" | safeHTML }}
+{{ end }}

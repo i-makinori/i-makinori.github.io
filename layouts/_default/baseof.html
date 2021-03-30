@@ -3,9 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
-	<meta name="generator" content="Hugo 0.82.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>n次元情報空間因果律基底研究室</title>
+    <title>{{ block "title" . }}{{ end }}</title>
     
     <link rel="icon" href="/favicon.ico" />
     
@@ -20,27 +19,19 @@
     <div class="screen-container">
       <div class="grid-container-wide-article">
         <div class="header">
-          <!-- _default/baseof.html start -->
+          {{ "<!-- _default/baseof.html start -->" | safeHTML }}
           <p>
             - n次元情報空間因果律基底研究室 - &nbsp;
-            [ <a href="/">入り口</a>
-            | <a href="/article/">雑記</a>
+            [ <a href="{{ relURL "/" }}">入り口</a>
+            | <a href="{{ relURL "/article/" }}">雑記</a>
             ]
           </p>
           <hr class="invisible" />
         </div>
         <div class="article-main">
           
-          
-<!-- _default/index.html start -->
-<h1>n次元情報空間因果律基底研究室</h1>
-
-<ul>
-  <li><a href="/article/hello-hugo/">Hello Hugo</a></li>
-  </ul>
-<!-- _default/index.html end -->
-
-          <!-- _default/baseof.html end -->
+          {{ block "main" . }}{{ end }}
+          {{ "<!-- _default/baseof.html end -->" | safeHTML }}
         </div>
         
         <div class="space-menu">

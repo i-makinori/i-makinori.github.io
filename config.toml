@@ -1,0 +1,7 @@
+baseURL = "http://i-makinori.github.io/"
+languageCode = "ja-JP"
+title = "n次元情報空間因果律基底研究室"
+contentDir = "spheres"
+disableKinds = ["RSS", "sitemap", "categories", "tags"]
+publishDir = "docs"
+
