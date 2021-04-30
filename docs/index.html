@@ -5,13 +5,15 @@
   <head>
 	<meta name="generator" content="Hugo 0.82.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
     <title> -n次元情報空間因果律基底研究室-</title>
+
     
     <link rel="icon" href="/favicon.ico" />
-    
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/syntax.css" />
+
     
     <script>
       MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
@@ -20,18 +22,36 @@
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
 
+    
+    <link rel="stylesheet" href="/css/tablesorter.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+    <script>
+      $(function(){
+          $('.sort-table').tablesorter({
+              textExtraction: function(node){
+                  var attr = $(node).attr('data-value');
+                  if(typeof attr !== 'undefined' && attr !== false){
+                      return attr;
+                  }
+                  return $(node).text();
+              }
+          });
+      });
+    </script>
+    
   </head>
   <body>
     <div class="screen-container">
       <div class="grid-container-wide-article">
         <div class="header">
           <!-- _default/baseof.html start -->
-          <p>
-            - n次元情報空間因果律基底研究室 - &nbsp;
+          <center>
+            <b> - n次元情報空間因果律基底研究室 - </b> &nbsp;
             [ <a href="/">入り口</a>
             | <a href="/article/">雑記</a>
             ]
-          </p>
+          </center>
           <hr class="invisible" />
         </div>
         <div class="article-main">
@@ -42,12 +62,81 @@
 
 
 
-<ul>
-  <li><a href="/index-text/">index</a></li>
-  <li><a href="/article/markdown-sample/">Markdown Sample</a></li>
-  <li><a href="/article/hello-hugo/">Hello Hugo</a></li>
-  <li><a href="/hello-test/">Hello Test</a></li>
-  </ul>
+
+<table class="sort-table" id="sphere_list">
+  <thead>
+    <tr>
+      <th style="border:0">[title]</th>
+      <th style="border:0">(relative-link)</th>
+      <th style="border:0">last modified</th>
+      <th style="border:0">published</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><a href="/index-text/">[index]</a></td>
+      <td><a href="/index-text/">(/index-text/)</a></td>
+      <td style="text-align:center;">2021-03-31</td>
+      <td style="text-align:center;">2021-03-31</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/article/">[Articles]</a></td>
+      <td><a href="/article/">(/article/)</a></td>
+      <td style="text-align:center;">2021-03-30</td>
+      <td style="text-align:center;">0001-01-01</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/article/markdown-sample/">[Markdown Sample]</a></td>
+      <td><a href="/article/markdown-sample/">(/article/markdown-sample/)</a></td>
+      <td style="text-align:center;">2021-03-30</td>
+      <td style="text-align:center;">2021-03-30</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/">[n次元情報空間因果律基底研究室]</a></td>
+      <td><a href="/">(/)</a></td>
+      <td style="text-align:center;">2021-03-30</td>
+      <td style="text-align:center;">0001-01-01</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/article/hello-hugo/">[Hello Hugo]</a></td>
+      <td><a href="/article/hello-hugo/">(/article/hello-hugo/)</a></td>
+      <td style="text-align:center;">2021-03-30</td>
+      <td style="text-align:center;">2021-03-30</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/hello-test/">[Hello Test]</a></td>
+      <td><a href="/hello-test/">(/hello-test/)</a></td>
+      <td style="text-align:center;">2021-03-30</td>
+      <td style="text-align:center;">2021-03-30</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/categories/">[Categories]</a></td>
+      <td><a href="/categories/">(/categories/)</a></td>
+      <td style="text-align:center;">0001-01-01</td>
+      <td style="text-align:center;">0001-01-01</td>
+    </tr>
+    
+    <tr>
+      <td><a href="/tags/">[Tags]</a></td>
+      <td><a href="/tags/">(/tags/)</a></td>
+      <td style="text-align:center;">0001-01-01</td>
+      <td style="text-align:center;">0001-01-01</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
 <!-- _default/index.html end -->
 
           <!-- _default/baseof.html end -->

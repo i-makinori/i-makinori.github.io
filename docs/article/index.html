@@ -4,13 +4,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
     <title>Articles -n次元情報空間因果律基底研究室-</title>
+
     
     <link rel="icon" href="/favicon.ico" />
-    
     <link rel="stylesheet" href="/css/normalize.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/syntax.css" />
+
     
     <script>
       MathJax = {tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
@@ -19,18 +21,36 @@
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
 
+    
+    <link rel="stylesheet" href="/css/tablesorter.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+    <script>
+      $(function(){
+          $('.sort-table').tablesorter({
+              textExtraction: function(node){
+                  var attr = $(node).attr('data-value');
+                  if(typeof attr !== 'undefined' && attr !== false){
+                      return attr;
+                  }
+                  return $(node).text();
+              }
+          });
+      });
+    </script>
+    
   </head>
   <body>
     <div class="screen-container">
       <div class="grid-container-wide-article">
         <div class="header">
           <!-- _default/baseof.html start -->
-          <p>
-            - n次元情報空間因果律基底研究室 - &nbsp;
+          <center>
+            <b> - n次元情報空間因果律基底研究室 - </b> &nbsp;
             [ <a href="/">入り口</a>
             | <a href="/article/">雑記</a>
             ]
-          </p>
+          </center>
           <hr class="invisible" />
         </div>
         <div class="article-main">

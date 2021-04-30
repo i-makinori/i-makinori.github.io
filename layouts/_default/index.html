@@ -6,10 +6,32 @@
 
 
 {{ .Content }}
-<ul>
-  {{ range .Site.RegularPages -}}
-  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-  {{ end -}}
-</ul>
+
+<table class="sort-table" id="sphere_list">
+  <thead>
+    <tr>
+      <th style="border:0">[title]</th>
+      <th style="border:0">(relative-link)</th>
+      <th style="border:0">last modified</th>
+      <th style="border:0">published</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range site.Pages}}
+    <tr>
+      <td><a href="{{ .RelPermalink }}">[{{ .Title }}]</a></td>
+      <td><a href="{{ .RelPermalink }}">({{ .RelPermalink }})</a></td>
+      <td style="text-align:center;">{{ .Lastmod.Format  "2006-01-02"}}</td>
+      <td style="text-align:center;">{{ .PublishDate.Format  "2006-01-02"}}</td>
+    </tr>
+    {{ end -}}
+  </tbody>
+</table>
+
+
+
+
+
+
 {{ "<!-- _default/index.html end -->" | safeHTML }}
 {{ end }}
